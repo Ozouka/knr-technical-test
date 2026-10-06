@@ -1,0 +1,10 @@
+.knr-announcement {
+  padding-block: 9px;
+  text-align: center;
+  background: #000;
+  color: #fff;
+}
+
+.knr-announcement a {
+  color: inherit;
+}

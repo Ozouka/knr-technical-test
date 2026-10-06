@@ -1,0 +1,21 @@
+{{ 'knr-announcement-bar.css' | asset_url | stylesheet_tag }}
+
+<div class="knr-announcement">
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "KNR Annoncement Bar",
+  "blocks": [
+    {
+      "type": "_announcement"
+    }
+  ],
+  "presets": [
+    {
+      "name": "KNR Annoncement Bar"
+    }
+  ]
+}
+{% endschema %}

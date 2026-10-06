@@ -1,0 +1,68 @@
+.knr-product-carousel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 20px;
+  padding-bottom: 16px;
+}
+
+.knr-product-carousel * {
+  margin: 0;
+}
+
+.knr-product-carousel__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.knr-product-carousel__title {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.knr-product-carousel__controls {
+  display: flex;
+  gap: 4px;
+}
+
+.knr-product-carousel__arrow {
+  display: flex;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.knr-product-carousel__arrow--prev svg {
+  transform: rotate(180deg);
+}
+
+.knr-product-carousel__arrow[disabled] {
+  visibility: hidden;
+}
+
+.knr-product-carousel__track {
+  --gap: 8px;
+  --peek: 10px;
+  display: flex;
+  gap: var(--gap);
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.knr-product-carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.knr-product-carousel__item {
+  flex: 0 0 calc((100% - 2 * var(--gap) - var(--peek)) / 2);
+  min-width: 0;
+  scroll-snap-align: start;
+}

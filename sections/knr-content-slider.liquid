@@ -1,0 +1,92 @@
+{{ 'knr-content-slider.css' | asset_url | stylesheet_tag }}
+{{ 'knr-usage-card.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'knr-slider.js' | asset_url }}" defer></script>
+
+{%- assign pagination_id = 'content-slider-pagination-' | append: section.id -%}
+{%- assign has_articles = section.blocks | where: 'type', 'article' | size -%}
+
+<section class="content-slider-container{% if has_articles > 0 %} content-slider-container--articles{% endif %}">
+  <h2 class="content-slider-container__title">{{ section.settings.title }}</h2>
+
+  <knr-slider class="content-slider-container__carousel" dots="{{ pagination_id }}">
+    <ul class="content-slider-container__track" data-knr-track>
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'article' -%}
+            {%- assign article = block.settings.article -%}
+            {%- assign card_image = article.image -%}
+            {%- assign card_label = blank -%}
+            {%- assign card_url = article.url -%}
+            {%- assign url_parts = article.url | split: '/' -%}
+            {%- assign blog_handle = url_parts[2] -%}
+            {%- assign card_subtitle = blogs[blog_handle].title -%}
+            {%- assign card_title = article.title -%}
+            {%- assign card_text = article.excerpt_or_content | strip_html | truncate: 200 -%}
+          {%- else -%}
+            {%- assign card_image = block.settings.image -%}
+            {%- assign card_label = forloop.index | prepend: '0' | slice: -2, 2 -%}
+            {%- assign card_subtitle = blank -%}
+            {%- assign card_title = block.settings.title -%}
+            {%- assign card_text = block.settings.text -%}
+        {%- endcase -%}
+        <li class="content-slider-container__item" {{ block.shopify_attributes }}>
+          {% render 'knr-usage-card',
+            image: card_image,
+            number: card_label,
+            subtitle: card_subtitle,
+            title: card_title,
+            text: card_text,
+            url: card_url,
+            button_label: section.settings.button_label
+          %}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </knr-slider>
+
+  <div class="content-slider-container__pagination" id="{{ pagination_id }}">
+    {%- for block in section.blocks -%}
+      {%- assign dot_label = section.settings.dot_label | append: ' ' | append: forloop.index -%}
+      <button type="button" aria-label="{{ dot_label }}"></button>
+    {%- endfor -%}
+  </div>
+
+  {%- if has_articles > 0 and section.settings.link_url != blank -%}
+    <a href="{{ section.settings.link_url }}" class="content-slider-container__link">{{ section.settings.link_label }}</a>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "KNR Content Slider",
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Étape",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Titre" },
+        { "type": "richtext", "id": "text", "label": "Texte" }
+      ]
+    },
+    {
+      "type": "article",
+      "name": "Article de blog",
+      "settings": [
+        { "type": "article", "id": "article", "label": "Article" }
+      ]
+    }
+  ],
+  "settings": [
+    { "type": "text", "id": "title", "label": "Titre de la section", "default": "How to use" },
+    { "type": "text", "id": "button_label", "label": "Texte du bouton", "default": "Lire plus" },
+    { "type": "text", "id": "dot_label", "label": "Aria-label pagination", "default": "Étape" },
+    { "type": "header", "content": "Lien (affiché si article de blog)" },
+    { "type": "text", "id": "link_label", "label": "Texte du lien", "default": "Voir tous les articles" },
+    { "type": "url", "id": "link_url", "label": "Lien" }
+  ],
+  "presets": [
+    { "name": "KNR Content Slider" }
+  ]
+}
+{% endschema %}

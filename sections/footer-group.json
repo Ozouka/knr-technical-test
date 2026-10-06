@@ -1,0 +1,119 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "t:names.footer",
+  "sections": {
+    "knr_reassurance_AXKhDA": {
+      "type": "knr-reassurance",
+      "blocks": {
+        "item_WzWUwx": {
+          "type": "item",
+          "settings": {
+            "title": "LIVRAISON OFFERTE",
+            "text": "Livraison offerte\ndès 60 € d'achat\nen France métropolitaine"
+          }
+        },
+        "item_W3cVgf": {
+          "type": "item",
+          "settings": {
+            "title": "RETOURS GRATUITS",
+            "text": "Retours acceptés\njusqu'à 30 jours\naprès réception."
+          }
+        },
+        "item_dEYJiW": {
+          "type": "item",
+          "settings": {
+            "title": "PAIEMENT SÉCURISÉ",
+            "text": "Paiement 100 % sécurisé\npar carte bancaire,\nPayPal ou virement."
+          }
+        },
+        "item_MHqdJX": {
+          "type": "item",
+          "settings": {
+            "title": "Service client",
+            "text": "Du lundi au vendredi de 9h à 18h par email et téléphone."
+          }
+        }
+      },
+      "block_order": [
+        "item_WzWUwx",
+        "item_W3cVgf",
+        "item_dEYJiW",
+        "item_MHqdJX"
+      ],
+      "name": "KNR Réassurance",
+      "settings": {
+        "autoplay": 5,
+        "dot_label": "Annonce"
+      }
+    },
+    "knr_footer_LdfJFh": {
+      "type": "knr-footer",
+      "blocks": {
+        "accordion_W8m9NF": {
+          "type": "accordion",
+          "settings": {
+            "title": "Découvrir",
+            "content_type": "links",
+            "content": "<p>Découvrir&nbsp;</p>",
+            "menu": "d-couvrir"
+          }
+        },
+        "accordion_G3WLLB": {
+          "type": "accordion",
+          "settings": {
+            "title": "Service client",
+            "content_type": "links",
+            "content": "",
+            "menu": "service-client"
+          }
+        },
+        "accordion_39TMV4": {
+          "type": "accordion",
+          "settings": {
+            "title": "Légal & Transparence",
+            "content_type": "links",
+            "content": "",
+            "menu": "l-gal-transparence"
+          }
+        }
+      },
+      "block_order": [
+        "accordion_W8m9NF",
+        "accordion_G3WLLB",
+        "accordion_39TMV4"
+      ],
+      "name": "KNR Footer",
+      "settings": {
+        "autoplay": 5,
+        "dot_label": "Annonce",
+        "about_title": "À propos de Maison Célestine",
+        "about_text": "Maison Célestine est une marque de soins anti-âge haut de gamme formulés à partir d'ingrédients d'origine naturelle soigneusement sélectionnés.",
+        "certification_image": "cosmos-organic",
+        "certification_text": "Certifié COSMOS ORGANIC par ECOCERT Greenlife",
+        "certification_link_label": "Voir le certificat",
+        "certification_link_url": "shopify://pages/data-sharing-opt-out",
+        "wordmark": "shopify://shop_images/Union.svg",
+        "country_label": "Pays",
+        "language_label": "Langue",
+        "copyright": "Maison Célestine. Tous droits réservés.",
+        "facebook_url": "shopify://policies/privacy-policy",
+        "instagram_url": "shopify://policies/privacy-policy",
+        "tiktok_url": "shopify://policies/privacy-policy",
+        "linkedin_url": "shopify://policies/privacy-policy"
+      }
+    }
+  },
+  "order": [
+    "knr_reassurance_AXKhDA",
+    "knr_footer_LdfJFh"
+  ]
+}

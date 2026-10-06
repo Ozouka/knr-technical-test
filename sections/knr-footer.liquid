@@ -1,0 +1,184 @@
+{{ 'knr-footer.css' | asset_url | stylesheet_tag }}
+{{ 'knr-accordion.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'knr-accordion.js' | asset_url }}" defer></script>
+
+{%- assign accordions = section.blocks | where: 'type', 'accordion' -%}
+
+<footer class="knr-footer">
+  <div class="knr-footer__main">
+    {%- if accordions.size > 0 -%}
+      <div class="knr-footer__faq">
+        {%- for block in accordions -%}
+          {%- assign menu = nil -%}
+          {%- if block.settings.content_type == 'links' -%}
+            {%- assign menu = block.settings.menu -%}
+          {%- endif -%}
+          <div class="knr-footer__faq-item" {{ block.shopify_attributes }}>
+            <div class="knr-footer__accordion">
+              {% render 'knr-accordion', title: block.settings.title, content: block.settings.content, links: menu %}
+            </div>
+            <div class="knr-footer__column">
+              <p class="knr-footer__column-title">{{ block.settings.title }}</p>
+              <div class="knr-footer__column-content">
+                {%- if menu != blank -%}
+                  {%- for link in menu.links -%}
+                    <a href="{{ link.url }}">{{ link.title }}</a>
+                  {%- endfor -%}
+                {%- else -%}
+                  {{ block.settings.content }}
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    <div class="knr-footer__about">
+      {%- if section.settings.about_title != blank -%}
+        <p class="knr-footer__text">{{ section.settings.about_title }}</p>
+      {%- endif -%}
+      {%- if section.settings.about_text != blank -%}
+        <p class="knr-footer__text">{{ section.settings.about_text }}</p>
+      {%- endif -%}
+
+      <div class="knr-footer__certification">
+        {%- if section.settings.certification_image -%}
+          {% render 'knr-icon', variant: section.settings.certification_image %}
+        {%- endif -%}
+        {%- if section.settings.certification_text != blank -%}
+          <p class="knr-footer__text knr-footer__certification-text">{{ section.settings.certification_text }}</p>
+        {%- endif -%}
+        {%- if section.settings.certification_link_url != blank -%}
+          <a href="{{ section.settings.certification_link_url }}" class="knr-footer__link">{{ section.settings.certification_link_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="knr-footer__bottom">
+    {%- if section.settings.wordmark -%}
+      {{ section.settings.wordmark | image_url: width: 1200 | image_tag: class: 'knr-footer__wordmark', widths: '390, 780, 1200', sizes: '100vw', alt: shop.name, loading: 'lazy' }}
+    {%- endif -%}
+
+    <div class="knr-footer__legal">
+      {%- if localization.available_countries.size > 0 or localization.available_languages.size > 0-%}
+        {%- form 'localization', class: 'knr-footer__localization' -%}
+          {%- if localization.available_countries.size > 0 -%}
+            <div class="knr-footer__selector">
+              <select name="country_code" class="knr-footer__select" aria-label="{{ section.settings.country_label }}" onchange="this.form.submit()">
+                {%- for country in localization.available_countries -%}
+                  <option value="{{ country.iso_code }}" {% if country.iso_code == localization.country.iso_code %}selected{% endif %}>
+                    {{ country.name }} ({{ country.currency.symbol }})
+                  </option>
+                {%- endfor -%}
+              </select>
+              <span class="knr-footer__chevron" aria-hidden="true">{% render 'knr-icon', variant: 'arrow-right' %}</span>
+            </div>
+          {%- endif -%}
+
+          {%- if localization.available_languages.size > 0 -%}
+            <div class="knr-footer__selector">
+              <select name="language_code" class="knr-footer__select" aria-label="{{ section.settings.language_label }}" onchange="this.form.submit()">
+                {%- for language in localization.available_languages -%}
+                  <option value="{{ language.iso_code }}" {% if language.iso_code == localization.language.iso_code %}selected{% endif %}>
+                    {{ language.endonym_name | capitalize }}
+                  </option>
+                {%- endfor -%}
+              </select>
+              <span class="knr-footer__chevron" aria-hidden="true">{% render 'knr-icon', variant: 'arrow-right' %}</span>
+            </div>
+          {%- endif -%}
+        {%- endform -%}
+      {%- endif -%}
+
+      <p class="knr-footer__copyright">© {{ 'now' | date: '%Y' }} {{ section.settings.copyright }}</p>
+
+      <div class="knr-footer__socials">
+        {%- if section.settings.facebook_url != blank -%}
+          <a href="{{ section.settings.facebook_url }}" class="knr-footer__social" aria-label="Facebook" target="_blank" rel="noopener">{% render 'knr-icon', variant: 'facebook' %}</a>
+        {%- endif -%}
+        {%- if section.settings.instagram_url != blank -%}
+          <a href="{{ section.settings.instagram_url }}" class="knr-footer__social" aria-label="Instagram" target="_blank" rel="noopener">{% render 'knr-icon', variant: 'instagram' %}</a>
+        {%- endif -%}
+        {%- if section.settings.tiktok_url != blank -%}
+          <a href="{{ section.settings.tiktok_url }}" class="knr-footer__social" aria-label="TikTok" target="_blank" rel="noopener">{% render 'knr-icon', variant: 'tiktok' %}</a>
+        {%- endif -%}
+        {%- if section.settings.linkedin_url != blank -%}
+          <a href="{{ section.settings.linkedin_url }}" class="knr-footer__social" aria-label="LinkedIn" target="_blank" rel="noopener">{% render 'knr-icon', variant: 'linkedin' %}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "KNR Footer",
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "Accordéon",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Titre", "default": "Découvrir" },
+        {
+          "type": "select",
+          "id": "content_type",
+          "label": "Type de contenu",
+          "options": [
+            { "value": "richtext", "label": "Texte" },
+            { "value": "links", "label": "Liens (menu)" }
+          ],
+          "default": "richtext"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Contenu",
+          "visible_if": "{{ block.settings.content_type == 'richtext' }}"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu",
+          "info": "Acheter, Notre histoire, Science…",
+          "visible_if": "{{ block.settings.content_type == 'links' }}"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    { "type": "header", "content": "À propos" },
+    { "type": "text", "id": "about_title", "label": "Titre", "default": "À propos de Maison Célestine" },
+    { "type": "textarea", "id": "about_text", "label": "Texte" },
+    { "type": "text", "id": "certification_image", "label": "Logo certification", "info": "Vous devez mettre le nom de l'icon ici" },
+    { "type": "text", "id": "certification_text", "label": "Texte certification", "default": "Certifié COSMOS ORGANIC par ECOCERT Greenlife" },
+    { "type": "text", "id": "certification_link_label", "label": "Texte du lien", "default": "Voir le certificat" },
+    { "type": "url", "id": "certification_link_url", "label": "Lien" },
+
+    { "type": "header", "content": "Logo" },
+    { "type": "image_picker", "id": "wordmark", "label": "Logo (SVG recommandé)" },
+
+    { "type": "header", "content": "Bas de page" },
+    { "type": "text", "id": "country_label", "label": "Aria-label sélecteur pays", "default": "Pays" },
+    { "type": "text", "id": "language_label", "label": "Aria-label sélecteur langue", "default": "Langue" },
+    { "type": "text", "id": "copyright", "label": "Copyright (l'année est ajoutée automatiquement)", "default": "Maison Célestine. Tous droits réservés." },
+
+    { "type": "header", "content": "Réseaux sociaux" },
+    { "type": "url", "id": "facebook_url", "label": "Facebook" },
+    { "type": "url", "id": "instagram_url", "label": "Instagram" },
+    { "type": "url", "id": "tiktok_url", "label": "TikTok" },
+    { "type": "url", "id": "linkedin_url", "label": "LinkedIn" }
+  ],
+  "presets": [
+    {
+      "name": "KNR Footer",
+      "blocks": [
+        { "type": "accordion", "settings": { "title": "Découvrir" } },
+        { "type": "accordion", "settings": { "title": "Service client" } },
+        { "type": "accordion", "settings": { "title": "Légal & Transparence" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

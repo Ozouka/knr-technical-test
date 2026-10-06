@@ -1,0 +1,242 @@
+.knr-review {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 40px 24px 64px;
+  background: #fff;
+  color: #000;
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.knr-review * {
+  margin: 0;
+}
+
+.knr-review__title {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.knr-review__summary {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.knr-review__overview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  line-height: 14px;
+  color: #b5a282;
+}
+
+.knr-review__score {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.knr-star-rating {
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 0;
+  color: #b5a282;
+}
+
+.knr-review__distribution {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.knr-review__row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.knr-review__bar {
+  width: 104px;
+  height: 12px;
+  background: linear-gradient(#dcd5c3, #dcd5c3) no-repeat left / var(--knr-fill) 100%, #f9f8f5;
+}
+
+.knr-review__bar-count {
+  min-width: 13px;
+  font-size: 10px;
+  line-height: 14px;
+  color: #b5a282;
+}
+
+.knr-review__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.knr-review__button,
+.knr-review__filter {
+  font-family: inherit;
+  letter-spacing: inherit;
+  color: #000;
+}
+
+.knr-review__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  padding: 0 24px;
+  border: 1px solid #000;
+  border-radius: 2px;
+  background: none;
+  font-size: 13px;
+  line-height: 21px;
+}
+
+.knr-review__button--primary {
+  background: #000;
+  color: #fff;
+}
+
+.knr-review__button--more {
+  border-radius: 4px;
+}
+
+.knr-review__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.knr-review__filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 0 16px;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 53, 146, 0.24);
+  background: none;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.knr-review__items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.knr-review__item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 53, 146, 0.24);
+}
+
+.knr-review__item[hidden] {
+  display: none;
+}
+
+.knr-review__item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.knr-review__date {
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.knr-review__author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.knr-review__author,
+.knr-review__content {
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.knr-review__badge {
+  padding: 5px 4px 4px;
+  border: 0.5px solid #000;
+  border-radius: 2px;
+  font-size: 8px;
+  line-height: 100%;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.knr-review__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (min-width: 1024px) {
+  .knr-review {
+    align-items: center;
+    padding: 0 80px 120px;
+  }
+
+  .knr-review__title {
+    align-self: stretch;
+    padding-bottom: 40px;
+    font-size: 32px;
+    line-height: 40px;
+    text-align: center;
+  }
+
+  .knr-review__summary {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0;
+    width: 720px;
+  }
+  .knr-review__overview,
+  .knr-review__distribution,
+  .knr-review__actions {
+    flex: 1;
+  }
+  .knr-review__overview,
+  .knr-review__distribution {
+    align-items: flex-start;
+  }
+  .knr-review__actions {
+    justify-content: center;
+  }
+
+  .knr-review__list {
+    width: 720px;
+  }
+  .knr-review__filter,
+  .knr-review__item {
+    border-bottom-color: rgba(0, 0, 0, 0.24);
+  }
+  .knr-review__content {
+    max-width: 640px;
+  }
+
+  .knr-review__button--more {
+    align-self: center;
+    width: 250px;
+    border-radius: 2px;
+  }
+}

@@ -1,0 +1,96 @@
+{{ 'knr-editorial-banner.css' | asset_url | stylesheet_tag }}
+
+<section class="knr-editorial-main">
+  {%- if section.settings.image -%}
+    {{ section.settings.image | image_url: width: 1500 | image_tag: class: 'knr-editorial-main__image', widths: '375, 750, 1100, 1500', sizes: '100vw', alt: '', loading: 'lazy' }}
+  {%- endif -%}
+
+  <div class="knr-editorial-main__header">
+    <p class="knr-editorial-main__label">{{ section.settings.label }}</p>
+    <span class="knr-editorial-main__divider" aria-hidden="true"></span>
+  </div>
+
+  <div class="knr-editorial-main__content">
+    {%- assign card_product = section.settings.product -%}
+    {%- if card_product != blank -%}
+      {%- assign card_variant = card_product.selected_or_first_available_variant -%}
+      <knr-quick-add style="display: contents">
+        {%- form 'product', card_product, class: 'knr-editorial-main__product' -%}
+          <div class="knr-editorial-main__product-main">
+            {%- if card_product.featured_image -%}
+              {{ card_product.featured_image | image_url: width: 208 | image_tag: class: 'knr-editorial-main__product-image', width: 104, height: 104, alt: card_product.featured_image.alt | default: card_product.title, loading: 'lazy' }}
+            {%- endif -%}
+            <div class="knr-editorial-main__product-details">
+              <p class="knr-editorial-main__product-name">{{ card_product.title }}</p>
+              <div class="knr-editorial-main__product-options">
+                {%- for variant in card_product.variants -%}
+                  <label class="knr-editorial-main__product-option">
+                    <input
+                      type="radio"
+                      name="id"
+                      value="{{ variant.id }}"
+                      data-price="{{ variant.price | money }}"
+                      data-available="{{ variant.available }}"{% if variant.id == card_variant.id %} checked{% endif %}>
+                    <span>{{ variant.title }}</span>
+                  </label>
+                {%- endfor -%}
+              </div>
+              <p class="knr-editorial-main__product-price" data-knr-price>{{ card_variant.price | money }}</p>
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="knr-editorial-main__atc"{% unless card_variant.available %} disabled{% endunless %}>
+            {{ section.settings.atc_label }}
+          </button>
+        {%- endform -%}
+      </knr-quick-add>
+    {%- endif -%}
+    <p class="knr-editorial-main__text">{{ section.settings.text | strip_html }}</p>
+    <p class="knr-editorial-main__author">{{ section.settings.author }}</p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "KNR Editorial",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image de fond"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Libellé"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texte"
+    },
+    {
+      "type": "text",
+      "id": "author",
+      "label": "Auteur"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Produit"
+    },
+    {
+      "type": "text",
+      "id": "atc_label",
+      "label": "Bouton panier",
+      "default": "Ajouter au panier"
+    }
+  ],
+  "presets": [
+    {
+      "name": "KNR Editorial"
+    }
+  ]
+}
+{% endschema %}

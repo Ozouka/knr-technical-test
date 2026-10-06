@@ -1,0 +1,588 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product-information",
+      "blocks": {
+        "disclosures_g9mWze": {
+          "type": "disclosures",
+          "name": "t:names.disclosures",
+          "settings": {
+            "heading": "Disclosures",
+            "heading_preset": "h5",
+            "open_by_default": false,
+            "icon": "caret",
+            "disclosure_heading_preset": "h6",
+            "text_color": "",
+            "dividers": true,
+            "divider_color": "{{ settings.color_palette.color2 }}",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "media-gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "media_presentation": "grid",
+            "media_columns": "two",
+            "image_gap": 4,
+            "large_first_image": false,
+            "icons_style": "arrow",
+            "slideshow_controls_style": "counter",
+            "slideshow_mobile_controls_style": "dots",
+            "thumbnail_position": "right",
+            "thumbnail_width": 44,
+            "thumbnail_radius": 0,
+            "aspect_ratio": "adapt",
+            "constrain_to_viewport": true,
+            "media_fit": "contain",
+            "media_radius": 0,
+            "extend_media": false,
+            "zoom": true,
+            "video_loop": false,
+            "hide_variants": true,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "product-details": {
+          "type": "_product-details",
+          "static": true,
+          "settings": {
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "details_position": "flex-start",
+            "gap": 28,
+            "sticky_details_desktop": true,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 24,
+            "padding-block-end": 24,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "group_icgrde": {
+              "type": "group",
+              "name": "t:names.header",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_xrnftG": {
+                  "type": "text",
+                  "name": "t:names.product_title",
+                  "settings": {
+                    "text": "<h1>{{ closest.product.title }}</h1>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "h3",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "price_tVjtKg": {
+                  "type": "price",
+                  "settings": {
+                    "show_sale_price_first": true,
+                    "show_installments": false,
+                    "show_tax_info": false,
+                    "type_preset": "paragraph",
+                    "width": "100%",
+                    "alignment": "left",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "text_color": "",
+                    "padding-block-start": 4,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_xrnftG",
+                "price_tVjtKg"
+              ]
+            },
+            "divider_VJhene": {
+              "type": "_divider",
+              "name": "t:names.divider",
+              "settings": {
+                "thickness": 1,
+                "corner_radius": "square",
+                "divider_color": "{{ settings.color_palette.color2 }}",
+                "width_percent": 100,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
+            "variant_picker_R3rGDr": {
+              "type": "variant-picker",
+              "settings": {
+                "variant_style": "buttons",
+                "show_swatches": false,
+                "option_label_text_color": "",
+                "variant_style_class": "default",
+                "custom_variant_background": "{{ settings.color_palette.background }}",
+                "custom_variant_text": "{{ settings.color_palette.foreground }}",
+                "custom_variant_border": "{{ settings.color_palette.foreground }}",
+                "selected_variant_style_class": "default",
+                "custom_selected_variant_background": "{{ settings.color_palette.foreground }}",
+                "custom_selected_variant_text": "{{ settings.color_palette.background }}",
+                "custom_selected_variant_border": "{{ settings.color_palette.foreground }}",
+                "alignment": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons_eYQEYi": {
+              "type": "buy-buttons",
+              "settings": {
+                "stacking": true,
+                "text_color": "",
+                "show_pickup_availability": false,
+                "gift_card_form": true,
+                "recipient_button_style": "default",
+                "recipient_button_background": "{{ settings.color_palette.background }}",
+                "recipient_button_text": "{{ settings.color_palette.foreground }}",
+                "recipient_button_border": "{{ settings.color_palette.foreground }}",
+                "selected_recipient_button_style": "default",
+                "selected_recipient_button_background": "{{ settings.color_palette.foreground }}",
+                "selected_recipient_button_text": "{{ settings.color_palette.background }}",
+                "selected_recipient_button_border": "{{ settings.color_palette.foreground }}",
+                "input_style": "default",
+                "input_background_color": "{{ settings.color_palette.background }}",
+                "input_text_color": "{{ settings.color_palette.foreground }}",
+                "input_border_color": "{{ settings.color_palette.foreground }}",
+                "border_width": 1,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "static": true,
+                  "settings": {
+                    "input_style": "default",
+                    "input_background_color": "{{ settings.color_palette.background }}",
+                    "input_text_color": "{{ settings.color_palette.foreground }}",
+                    "input_border_color": "{{ settings.color_palette.foreground }}",
+                    "border_width": 1,
+                    "border_radius": 0
+                  },
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button",
+                    "custom_button_background": "{{ settings.color_palette.foreground }}",
+                    "custom_button_text": "{{ settings.color_palette.background }}",
+                    "custom_button_border": "{{ settings.color_palette.background }}"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "text_aEtTtq": {
+              "type": "text",
+              "name": "t:names.product_description",
+              "settings": {
+                "text": "{{ closest.product.description }}",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "group_icgrde",
+            "divider_VJhene",
+            "variant_picker_R3rGDr",
+            "buy_buttons_eYQEYi",
+            "text_aEtTtq"
+          ]
+        }
+      },
+      "block_order": [
+        "disclosures_g9mWze"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_width": "content-center-aligned",
+        "desktop_media_position": "left",
+        "equal_columns": false,
+        "limit_details_width": false,
+        "gap": 48,
+        "enable_sticky_add_to_cart": true,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "knr_product_hero_tJWYY4": {
+      "type": "knr-product-hero",
+      "blocks": {
+        "message_Wzb78U": {
+          "type": "message",
+          "settings": {
+            "text": "En stock, livraison estimée Mercredi 25 février."
+          }
+        },
+        "message_MyAmEg": {
+          "type": "message",
+          "settings": {
+            "text": "Test  livraison estimée Mercredi 25 février."
+          }
+        },
+        "message_hrkhr9": {
+          "type": "message",
+          "settings": {
+            "text": "Test  livraison estimée Mercredi 25 février."
+          }
+        },
+        "message_fic4iV": {
+          "type": "message",
+          "settings": {
+            "text": "Test  livraison estimée Mercredi 25 février."
+          }
+        }
+      },
+      "block_order": [
+        "message_Wzb78U",
+        "message_MyAmEg",
+        "message_hrkhr9",
+        "message_fic4iV"
+      ],
+      "name": "KNR Product Hero",
+      "settings": {
+        "prev_label": "Image précédente",
+        "next_label": "Image suivante",
+        "dot_label": "Image",
+        "unit_price_label": "par",
+        "reviews_label": "avis",
+        "atc_label": "Ajouter au panier",
+        "sold_out_label": "Épuisé",
+        "in_stock_label": "En stock, livraison estimée",
+        "messages_autoplay": 4,
+        "description_title": "Description",
+        "benefits_title": "Bienfaits",
+        "ingredients_title": "Ingrédients clés",
+        "skin_types_title": "Adapté aux",
+        "ritual_title": "Complétez votre rituel",
+        "carousel_prev_label": "Produits précédents",
+        "carousel_next_label": "Produits suivants",
+        "carousel_add_label": "Ajouter au panier",
+        "zoom_label": "Agrandir l'image"
+      }
+    },
+    "knr_editorial_banner_jifHP4": {
+      "type": "knr-editorial-banner",
+      "name": "KNR Editorial",
+      "settings": {
+        "image": "{{ product.metafields.custom.banner_image.value }}",
+        "label": "{{ product.metafields.custom.banner_label.value }}",
+        "text": "<p>{{ product.metafields.custom.banner_text | metafield_tag }}</p>",
+        "author": "{{ product.metafields.custom.banner_author.value }}",
+        "product": "serum-precieux-regenerant",
+        "atc_label": "Ajouter au panier"
+      }
+    },
+    "knr_content_slider_4htPNb": {
+      "type": "knr-content-slider",
+      "blocks": {
+        "step_e3ptEh": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/b3c41b28239a6e1484b6d8323c24190882ab2c03.png",
+            "title": "Régénérer & Lisser",
+            "text": "<p>Concentré de pureté active. Huile végétale aux propriétés anti-oxydantes puissantes pour un éclat retrouvé.</p>"
+          }
+        },
+        "step_4Cdb89": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/d4b7f3b211c02c30ecfa9fcc5f20aacc35a96d1e.png",
+            "title": "Hydrater & Repulper",
+            "text": "<p>Éclat et uniformité retrouvés. Cible les taches et les irrégularités de grain de peau.</p>"
+          }
+        },
+        "step_7kL7pY": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/a90b67da1b70d5da6391fac25ef72a00c2465f75.png",
+            "title": "Découvrir",
+            "text": "<p>Fermeté et nutrition intense. Répare la barrière cutanée et lisse les contours du visage.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "step_e3ptEh",
+        "step_4Cdb89",
+        "step_7kL7pY"
+      ],
+      "name": "KNR Content Slider",
+      "settings": {
+        "title": "How to use",
+        "button_label": "Lire plus",
+        "dot_label": "Étape",
+        "link_label": "Voir tous les articles",
+        "link_url": ""
+      }
+    },
+    "knr_before_after_jqLqkh": {
+      "type": "knr-before-after",
+      "name": "KNR Before After",
+      "settings": {
+        "testimonial": "{{ product.metafields.custom.testimonials.value }}",
+        "before_image": "{{ product.metafields.custom.testimonials.value.before_image.value }}",
+        "after_image": "{{ product.metafields.custom.testimonials.value.after_image.value }}",
+        "title": "Ce que disent nos clientes",
+        "subtitle": "Des transformations visibles dès 4 semaines. Nos clientes témoignent d'une peau visiblement régénérée, plus ferme et lumineuse.",
+        "before_label": "Before",
+        "after_label": "After",
+        "range_label": "Comparer avant et après",
+        "prev_label": "Témoignage précédent",
+        "next_label": "Témoignage suivant"
+      }
+    },
+    "knr_faq_section_PXhweL": {
+      "type": "knr-faq-section",
+      "blocks": {
+        "question_i34bUh": {
+          "type": "question",
+          "settings": {
+            "title": "Comment utiliser ?",
+            "content": "<p>Appliquez 3 à 5 gouttes le soir sur visage et cou préalablement nettoyés. Massez délicatement en mouvements ascendants jusqu'à absorption complète.</p>"
+          }
+        },
+        "question_4XyLFT": {
+          "type": "question",
+          "settings": {
+            "title": "Quand voir les effets ?",
+            "content": "<p>Appliquez 3 à 5 gouttes le soir sur visage et cou préalablement nettoyés. Massez délicatement en mouvements ascendants jusqu'à absorption complète.</p>"
+          }
+        },
+        "question_4ndRGy": {
+          "type": "question",
+          "settings": {
+            "title": "Convient-il à tous ?",
+            "content": "<p>Appliquez 3 à 5 gouttes le soir sur visage et cou préalablement nettoyés. Massez délicatement en mouvements ascendants jusqu'à absorption complète.</p>"
+          }
+        },
+        "question_T9CtC9": {
+          "type": "question",
+          "settings": {
+            "title": "Est-il naturel ?",
+            "content": "<p>Appliquez 3 à 5 gouttes le soir sur visage et cou préalablement nettoyés. Massez délicatement en mouvements ascendants jusqu'à absorption complète.</p>"
+          }
+        },
+        "question_7CCcYN": {
+          "type": "question",
+          "settings": {
+            "title": "Peut-on l'associer ?",
+            "content": "<p>Appliquez 3 à 5 gouttes le soir sur visage et cou préalablement nettoyés. Massez délicatement en mouvements ascendants jusqu'à absorption complète.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_i34bUh",
+        "question_4XyLFT",
+        "question_4ndRGy",
+        "question_T9CtC9",
+        "question_7CCcYN"
+      ],
+      "name": "KNR FAQ",
+      "settings": {
+        "title": "Questions fréquentes"
+      }
+    },
+    "knr_review_section_YCGEWM": {
+      "type": "knr-review-section",
+      "name": "KNR Review",
+      "settings": {
+        "title": "Avis clients",
+        "out_of_label": "sur",
+        "based_on_label": "Basé sur",
+        "reviews_label": "avis",
+        "write_label": "Écrire un avis",
+        "ask_label": "Poser une question",
+        "filter_label": "Filtrer",
+        "verified_label": "Vérifié",
+        "load_more_label": "Charger plus",
+        "reviews_per_page": 3
+      }
+    },
+    "knr_content_slider_nw7Jkg": {
+      "type": "knr-content-slider",
+      "blocks": {
+        "article_Ug3PxM": {
+          "type": "article",
+          "settings": {
+            "article": "lorigine/fondee-en-2012-dans-les-alpes"
+          }
+        },
+        "article_nBeCAW": {
+          "type": "article",
+          "settings": {
+            "article": "la-formule/12-ingredients-actifs-selectionnes"
+          }
+        },
+        "article_m477GT": {
+          "type": "article",
+          "settings": {
+            "article": "lexpertise/12-ans-de-recherche-en-lab"
+          }
+        },
+        "article_F4mYPk": {
+          "type": "article",
+          "settings": {
+            "article": "lengagement/97-naturel-certifie"
+          }
+        }
+      },
+      "block_order": [
+        "article_Ug3PxM",
+        "article_nBeCAW",
+        "article_m477GT",
+        "article_F4mYPk"
+      ],
+      "name": "KNR Content Slider",
+      "settings": {
+        "title": "Latest news",
+        "button_label": "",
+        "dot_label": "Étape",
+        "link_label": "Voir tous les articles",
+        "link_url": "shopify://blogs/lorigine/fondee-en-2012-dans-les-alpes"
+      }
+    },
+    "knr_newsletter_eWzKJX": {
+      "type": "knr-newsletter",
+      "name": "KNR Newsletter",
+      "settings": {
+        "image": "shopify://shop_images/9859136db17d131b50492fe1db2318b7b1a8868d.png",
+        "text": "Sérum précieux régénérant — l'alliance de la science botanique et du luxe naturel pour une peau visiblement rajeunie en 4 semaines.",
+        "description": "Formule brevetée, testée dermatologiquement, 97 % d'ingrédients d'origine naturelle"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "knr_product_hero_tJWYY4",
+    "knr_editorial_banner_jifHP4",
+    "knr_content_slider_4htPNb",
+    "knr_before_after_jqLqkh",
+    "knr_faq_section_PXhweL",
+    "knr_review_section_YCGEWM",
+    "knr_content_slider_nw7Jkg",
+    "knr_newsletter_eWzKJX"
+  ]
+}

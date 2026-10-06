@@ -1,0 +1,51 @@
+{% doc %}
+  Usage step card: image, number, title, text, and button.
+
+  @param {image} image - Step image
+  @param {string} number - Displayed number (01, 02...)
+  @param {string} [subtitle] - Step subtitle (optional)
+  @param {string} title - Step title
+  @param {string} text - Description (4 visible lines)
+  @param {string} button_label - Button text
+  @param {string} [url] - Article URL to make the card clickable (optional)
+{% enddoc %}
+
+{%- assign image_alt = image.alt | default: title -%}
+
+{%- if url != blank -%}
+  <a href="{{ url }}" class="knr-usage-card" style="text-decoration: none; color: inherit;">
+{%- else -%}
+  <article class="knr-usage-card">
+{%- endif -%}
+    <div class="knr-usage-main">
+      {%- if image -%}
+        {{ image | image_url: width: 900 | image_tag: class: 'knr-usage-card__image', widths: '300, 600, 900', sizes: '(min-width: 1024px) 33vw, 70vw', alt: image_alt, loading: 'lazy' }}
+      {%- endif -%}
+      <div class="knr-usage-card__content">
+        <div class="knr-usage-card__main-wrapper">
+          {% if subtitle != blank %}
+            <div class="knr-usage-card__subtitle-wrapper">
+              <span class="knr-usage-card__subtitle">{{ subtitle }}</span>
+              <span class="knr-usage-card__subtitle-divider"></span>
+            </div>
+          {% endif %}
+          {% if number != blank %}
+            <span class="knr-usage-card__number">{{ number }}</span>
+          {% endif %}
+          <p class="knr-usage-card__title">{{ title }}</p>
+        </div>
+        <p class="knr-usage-card__text">{{ text }}</p>
+      </div>
+    </div>
+
+    {%- if url != blank -%}
+      <span class="knr-usage-card__button">{{ button_label }}</span>
+    {%- else -%}
+      <button type="button" class="knr-usage-card__button">{{ button_label }}</button>
+    {%- endif -%}
+
+{%- if url != blank -%}
+  </a>
+{%- else -%}
+  </article>
+{%- endif -%}

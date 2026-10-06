@@ -1,0 +1,57 @@
+{{ 'knr-faq.css' | asset_url | stylesheet_tag }}
+
+<section class="knr-faq">
+  <div class="knr-faq__inner">
+    <h2 class="knr-faq__title">
+      {{ section.settings.title }}
+    </h2>
+    <div class="knr-faq__accordions">
+      {% for block in section.blocks %}
+        {% render 'knr-accordion',
+          title: block.settings.title,
+          content: block.settings.content,
+          open: forloop.first
+        %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "KNR FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "Questions fréquentes"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Question",
+          "default": "Quelle est votre question ?"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Réponse",
+          "default": "<p>Ajoutez ici la réponse à cette question.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "KNR FAQ"
+    }
+  ]
+}
+{% endschema %}

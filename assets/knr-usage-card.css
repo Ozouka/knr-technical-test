@@ -1,0 +1,161 @@
+.knr-usage-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.knr-usage-main {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.knr-usage-card * {
+    margin: 0;
+}
+
+.knr-usage-card__image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.knr-usage-card__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    gap: 16px;
+}
+
+.knr-usage-card__number {
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+}
+
+.knr-usage-card__title {
+    width: 255px;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -0.02em;
+}
+
+.knr-usage-card__subtitle {
+    font-family: Inter;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: -2%;
+    vertical-align: middle;
+}
+
+.knr-usage-card__main-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.knr-usage-card__subtitle-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0;
+    gap: 8px;
+    width: 100%;
+}
+
+.knr-usage-card__subtitle {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: -0.02em;
+    color: #000000;
+    display: flex;
+    align-items: center;
+}
+
+.knr-usage-card__subtitle-divider {
+    width: 16px;
+    height: 0.8px;
+    background: #B5A282;
+    flex: none;
+}
+
+.knr-usage-card__text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.02em;
+}
+
+.knr-usage-card__button {
+    align-self: flex-start;
+    padding: 0;
+    border: 0;
+    border-bottom: 0.8px solid #000;
+    background: none;
+    color: #000;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: -0.02em;
+}
+
+@media (min-width: 1024px) {
+    .knr-usage-card__button {
+        display: none;
+    }
+    .content-slider-container {
+        flex-direction: row;
+        align-items: flex-end;
+        gap: 40px 16px;
+        padding: 40px 40px 120px;
+    }
+
+    .content-slider-container--articles {
+        padding: 0 40px;
+    }
+
+    .content-slider-container__title {
+        flex: 1;
+    }
+
+    .content-slider-container__link {
+        order: 1;
+        align-self: flex-end;
+        padding-bottom: 2px;
+    }
+
+    .content-slider-container__carousel {
+        order: 2;
+        flex: 0 0 100%;
+    }
+
+    .content-slider-container__pagination {
+        display: none;
+    }
+
+    .content-slider-container__track {
+        overflow: visible;
+        scroll-snap-type: none;
+    }
+
+    .content-slider-container__item {
+        flex: 0 0 calc((100% - 16px) / 3);
+    }
+
+    .content-slider-container--articles .content-slider-container__item {
+        flex-basis: calc((100% - 24px) / 4);
+    }
+}

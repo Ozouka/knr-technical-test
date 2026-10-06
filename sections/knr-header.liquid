@@ -1,0 +1,86 @@
+{{ 'knr-header.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cart-icon.js' | asset_url }}" type="module" fetchpriority="low"></script>
+
+{%- liquid
+  assign logo = section.settings.logo
+  assign w = section.settings.logo_width
+  assign w2 = w | times: 2
+  assign w3 = w | times: 3
+  assign logo_widths = w | append: ', ' | append: w2 | append: ', ' | append: w3
+-%}
+
+<header class="knr-header">
+  <a class="knr-header__logo" href="{{ routes.root_url }}">
+    {%- if logo != blank -%}
+      {%- liquid
+        assign w = section.settings.logo_width
+        assign w2 = w | times: 2
+        assign w3 = w | times: 3
+        assign logo_widths = w | append: ', ' | append: w2 | append: ', ' | append: w3
+        assign logo_sizes = w | append: 'px'
+        assign logo_alt = logo.alt | default: shop.name
+      -%}
+      {{ logo | image_url: width: w3 | image_tag: width: w, widths: logo_widths, sizes: logo_sizes, alt: logo_alt, loading: 'eager', fetchpriority: 'high' }}
+    {%- else -%}
+      {{ shop.name }}
+    {%- endif -%}
+  </a>
+
+  <nav class="knr-header__nav" aria-label="{{ section.settings.menu.title | escape }}">
+    {%- for link in section.settings.menu.links -%}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {%- endfor -%}
+  </nav>
+
+  <div class="knr-header__actions">
+    <a href="{{ section.settings.location_url }}" aria-label="{{ section.settings.location_label }}">
+      {% render 'knr-icon', variant: 'marker-pin' %}
+    </a>
+    <a href="{{ routes.account_url }}" aria-label="{{ section.settings.account_label }}" class="hidden-mobile">
+      {% render 'knr-icon', variant: 'user' %}
+    </a>
+    <a href="{{ routes.search_url }}" aria-label="{{ section.settings.search_label }}">
+      {% render 'knr-icon', variant: 'search' %}
+    </a>
+    <a href="{{ routes.cart_url }}" aria-label="{{ section.settings.cart_label }}" aria-describedby="cart-bubble-text">
+      <cart-icon class="knr-header__cart">
+        {% render 'knr-icon', variant: 'shopping-bag' %}
+        <div ref="cartBubble" class="knr-header__bubble{% if cart == empty %} visually-hidden{% endif %}">
+          <span ref="cartBubbleText" id="cart-bubble-text" class="knr-header__bubble-text">
+            <span
+              ref="cartBubbleCount"
+              class="knr-header__bubble-count{% if cart == empty %} hidden{% endif %}"
+              aria-hidden="true"
+              data-testid="cart-bubble"
+            >{{ cart.item_count }}</span>
+          </span>
+        </div>
+      </cart-icon>
+    </a>
+    <div class="hidden-desktop">
+      {% render 'knr-header-drawer', linklist: section.settings.menu %}
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "KNR Header",
+  "enabled_on": { "groups": ["header"] },
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "range", "id": "logo_width", "label": "Largeur du logo", "min": 60, "max": 300, "step": 10, "unit": "px", "default": 140 },
+    { "type": "link_list", "id": "menu", "label": "Menu du drawer", "default": "main-menu" },
+    { "type": "url", "id": "location_url", "label": "Lien localisation" },
+    { "type": "text", "id": "location_label", "label": "Aria-label localisation", "default": "Nous trouver" },
+    { "type": "text", "id": "account_label", "label": "Aria-label compte", "default": "Mon compte" },
+    { "type": "text", "id": "search_label", "label": "Aria-label recherche", "default": "Rechercher" },
+    { "type": "text", "id": "cart_label", "label": "Aria-label panier", "default": "Panier" }
+  ],
+  "presets": [
+    {
+      "name": "KNR Header"
+    }
+  ]
+}
+{% endschema %}

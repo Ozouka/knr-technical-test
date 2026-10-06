@@ -1,0 +1,86 @@
+.knr-reassurance {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 80px 40px;
+  background: #dcd5c3;
+  border-bottom: 0.8px solid #dcd5c3;
+  font-family: Inter, sans-serif;
+  color: #000;
+}
+
+.knr-reassurance * {
+  margin: 0;
+}
+
+.knr-reassurance__slider {
+  display: block;
+  width: 100%;
+}
+
+.knr-reassurance__track {
+  display: flex;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.knr-reassurance__track::-webkit-scrollbar {
+  display: none;
+}
+
+.knr-reassurance__slide {
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  scroll-snap-align: start;
+  text-align: center;
+}
+
+.knr-reassurance__title {
+  font-size: 14px;
+  line-height: 14px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.knr-reassurance__text {
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+}
+
+.knr-reassurance__dots {
+  display: flex;
+  gap: 8px;
+}
+.knr-reassurance__dots button {
+  width: 16px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  background: #b5a282;
+}
+.knr-reassurance__dots button[aria-current='true'] {
+  background: #000;
+}
+
+@media (min-width: 1024px) {
+  .knr-reassurance__track {
+    gap: 80px;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+  .knr-reassurance__slide {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .knr-reassurance__dots {
+    display: none;
+  }
+}

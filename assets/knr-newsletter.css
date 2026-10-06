@@ -1,0 +1,135 @@
+.knr-newsletter {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0 24px 64px;
+  background: #fff;
+  font-family: Inter, sans-serif;
+}
+
+.knr-newsletter * {
+  margin: 0;
+}
+
+.knr-newsletter__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 342 / 232;
+}
+
+.knr-newsletter__container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.knr-newsletter__text {
+  display: flex;
+  align-items: center;
+  min-height: 240px;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.04em;
+  color: #000;
+}
+
+.knr-newsletter__info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.knr-newsletter__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.knr-newsletter__input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 48px;
+  padding: 0 0 0 24px;
+  border: 0.8px solid #dcd5c3;
+  border-radius: 2px;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  color: #000;
+}
+
+.knr-newsletter__button {
+  height: 48px;
+  padding: 16px 24px;
+  border: 0;
+  border-radius: 2px;
+  background: #000;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 21px;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.knr-newsletter__description {
+  font-size: 10px;
+  line-height: 14px;
+  letter-spacing: -0.02em;
+  color: #000;
+}
+
+@media (min-width: 1024px) {
+  .knr-newsletter {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0;
+    padding: 120px 40px;
+  }
+
+  .knr-newsletter__image {
+    flex: 1;
+    min-width: 0;
+    align-self: flex-start;
+    aspect-ratio: 680 / 540;
+    object-fit: cover;
+  }
+
+  .knr-newsletter__container {
+    flex: 1;
+    min-width: 0;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 40px;
+  }
+
+  .knr-newsletter__text,
+  .knr-newsletter__info {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .knr-newsletter__text {
+    min-height: 192px;
+    font-size: 40px;
+    line-height: 48px;
+  }
+
+  .knr-newsletter__form {
+    flex-direction: row;
+    gap: 0;
+    border: 0.8px solid #dcd5c3;
+    border-radius: 2px;
+  }
+  .knr-newsletter__input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+  }
+  .knr-newsletter__button {
+    flex: none;
+    width: 160px;
+    border-radius: 0 2px 2px 0;
+  }
+}

@@ -1,0 +1,53 @@
+.knr-product-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.knr-product-tile__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 159 / 208;
+  overflow: hidden;
+}
+
+.knr-product-tile__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.knr-product-tile__add {
+  position: absolute;
+  cursor: pointer;
+  bottom: 8px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 0;
+  background: #fff;
+}
+
+.knr-product-tile__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 0 4px 11px;
+}
+
+.knr-product-tile__title {
+  flex: 1;
+  color: inherit;
+  text-decoration: none;
+}
+
+.knr-product-tile__price {
+  flex: none;
+}

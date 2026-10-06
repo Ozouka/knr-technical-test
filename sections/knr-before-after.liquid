@@ -1,0 +1,200 @@
+{{ 'knr-before-after.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'knr-slider.js' | asset_url }}" defer></script>
+<script src="{{ 'knr-before-after.js' | asset_url }}" defer></script>
+
+{%- liquid
+  assign testimonial = section.settings.testimonial
+  assign quotes = testimonial.quote.value
+  assign authors = testimonial.author.value
+  assign rating = testimonial.rating.value
+-%}
+
+<section class="knr-before-after">
+  <div class="knr-before-after__inner">
+    <div class="knr-before-after__heading">
+      <p class="knr-before-after__title">
+        {{ section.settings.title }}
+      </p>
+      <p class="knr-before-after__subtitle">
+        {{ section.settings.subtitle }}
+      </p>
+    </div>
+    {%- if section.settings.before_image != blank and section.settings.after_image != blank -%}
+      <knr-before-after class="knr-before-after__comparison">
+        <div class="knr-before-after__image knr-before-after__image--after">
+          {{
+            section.settings.after_image
+            | image_url: width: 1500
+            | image_tag:
+                widths: '375, 750, 1100, 1500',
+                sizes: '100vw',
+                loading: 'lazy',
+                alt: section.settings.after_image.alt | default: section.settings.after_label
+          }}
+        </div>
+        <div
+          class="knr-before-after__image knr-before-after__image--before"
+          style="--knr-before-after-position: 50%;"
+        >
+          {{
+            section.settings.before_image
+            | image_url: width: 1500
+            | image_tag:
+                widths: '375, 750, 1100, 1500',
+                sizes: '100vw',
+                loading: 'lazy',
+                alt: section.settings.before_image.alt | default: section.settings.before_label
+          }}
+        </div>
+        <p class="knr-before-after__label knr-before-after__label--before">
+          {{ section.settings.before_label }}
+        </p>
+        <p class="knr-before-after__label knr-before-after__label--after">
+          {{ section.settings.after_label }}
+        </p>
+        <div
+          class="knr-before-after__divider"
+          style="--knr-before-after-position: 50%;"
+          aria-hidden="true"
+        >
+          <span class="knr-before-after__handle">
+            {% render 'knr-icon', variant: 'menu-icon' %}
+          </span>
+        </div>
+        <input
+          class="knr-before-after__range"
+          type="range"
+          min="0"
+          max="100"
+          value="50"
+          step="1"
+          aria-label="{{ section.settings.range_label }}"
+          data-knr-before-after-range
+        >
+      </knr-before-after>
+    {%- endif -%}
+    {%- if quotes != blank -%}
+      <knr-slider class="knr-before-after__testimonials">
+        <ul
+          class="knr-before-after__testimonials-track"
+          data-knr-track
+        >
+          {%- for quote in quotes -%}
+            {%- assign index = forloop.index0 -%}
+            {%- assign author = authors[index] -%}
+            <li class="knr-before-after__testimonial">
+              <div class="knr-before-after__testimonial-meta">
+                {%- if rating != blank -%}
+                  <span
+                    class="knr-stars"
+                    style="--rating: {{ rating.rating }}"
+                    role="img"
+                    aria-label="{{ rating.rating }} / {{ rating.scale_max }}"
+                  >★★★★★</span>
+                {%- endif -%}
+                {%- if author != blank -%}
+                  <span class="knr-before-after__testimonial-author">
+                    {{ author }}
+                  </span>
+                {%- endif -%}
+              </div>
+              <p class="knr-before-after__testimonial-text">
+                {{ quote }}
+              </p>
+            </li>
+          {%- endfor -%}
+        </ul>
+        <div class="knr-before-after__testimonial-arrows">
+          <button
+            type="button"
+            class="knr-before-after__arrow knr-before-after__arrow--prev"
+            data-knr-prev
+            aria-label="{{ section.settings.prev_label }}"
+          >
+            {% render 'knr-icon', variant: 'arrow-right' %}
+          </button>
+          <button
+            type="button"
+            class="knr-before-after__arrow knr-before-after__arrow--next"
+            data-knr-next
+            aria-label="{{ section.settings.next_label }}"
+          >
+            {% render 'knr-icon', variant: 'arrow-right' %}
+          </button>
+        </div>
+      </knr-slider>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "KNR Before After",
+  "settings": [
+    {
+      "type": "metaobject",
+      "id": "testimonial",
+      "label": "Témoignages",
+      "metaobject_type": "testimonial"
+    },
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Image avant"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "Image après"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "Ce que disent nos clients"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Sous-titre",
+      "default": "Des transformations visibles dès 4 semaines. Nos clientes témoignent d'une peau visiblement régénérée, plus ferme et lumineuse."
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "label": "Label avant",
+      "default": "Before"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "label": "Label après",
+      "default": "After"
+    },
+    {
+      "type": "text",
+      "id": "range_label",
+      "label": "Aria-label comparaison",
+      "default": "Comparer avant et après"
+    },
+    {
+      "type": "text",
+      "id": "prev_label",
+      "label": "Aria-label précédent",
+      "default": "Témoignage précédent"
+    },
+    {
+      "type": "text",
+      "id": "next_label",
+      "label": "Aria-label suivant",
+      "default": "Témoignage suivant"
+    }
+  ],
+  "presets": [
+    {
+      "name": "KNR Before After"
+    }
+  ]
+}
+{% endschema %}

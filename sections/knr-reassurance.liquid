@@ -1,0 +1,57 @@
+{{ 'knr-reassurance.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'knr-slider.js' | asset_url }}" defer></script>
+
+{%- assign pagination_id = 'knr-reassurance-pagination-' | append: section.id -%}
+
+{%- if section.blocks.size > 0 -%}
+  <section class="knr-reassurance">
+    <knr-slider class="knr-reassurance__slider" dots="{{ pagination_id }}" autoplay="{{ section.settings.autoplay }}">
+      <ul class="knr-reassurance__track" data-knr-track>
+        {%- for block in section.blocks -%}
+          <li class="knr-reassurance__slide" {{ block.shopify_attributes }}>
+            <p class="knr-reassurance__title">{{ block.settings.title }}</p>
+            <p class="knr-reassurance__text">{{ block.settings.text }}</p>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </knr-slider>
+
+    <div class="knr-reassurance__dots" id="{{ pagination_id }}">
+      {%- for block in section.blocks -%}
+        {%- assign dot_label = section.settings.dot_label | append: ' ' | append: forloop.index -%}
+        <button type="button" aria-label="{{ dot_label }}"></button>
+      {%- endfor -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "KNR Réassurance",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Réassurance",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Titre", "default": "Service client" },
+        { "type": "textarea", "id": "text", "label": "Texte", "default": "Du lundi au vendredi de 9h à 18h par email et téléphone." }
+      ]
+    }
+  ],
+  "settings": [
+    { "type": "range", "id": "autoplay", "label": "Autoplay mobile (secondes, 0 = désactivé)", "min": 0, "max": 10, "step": 1, "unit": "s", "default": 5 },
+    { "type": "text", "id": "dot_label", "label": "Aria-label pagination", "default": "Annonce" }
+  ],
+  "presets": [
+    {
+      "name": "KNR Réassurance",
+      "blocks": [
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,42 @@
+{% doc %}
+  Carrousel horizontal de tuiles produit.
+
+  @param {string} title - Carousel title
+  @param products - List of products
+  @param {string} prev_label - Aria-label for previous button
+  @param {string} next_label - Aria-label for next button
+  @param {string} add_label - Aria-label for quick add button
+{% enddoc %}
+
+{%- if products != blank -%}
+  <knr-slider class="knr-product-carousel">
+    <div class="knr-product-carousel__header">
+      <p class="knr-product-carousel__title">{{ title }}</p>
+      <div class="knr-product-carousel__controls">
+        <button
+          type="button"
+          class="knr-product-carousel__arrow knr-product-carousel__arrow--prev"
+          data-knr-prev
+          aria-label="{{ prev_label }}"
+        >
+          {% render 'knr-icon', variant: 'arrow-right' %}
+        </button>
+        <button
+          type="button"
+          class="knr-product-carousel__arrow"
+          data-knr-next
+          aria-label="{{ next_label }}"
+        >
+          {% render 'knr-icon', variant: 'arrow-right' %}
+        </button>
+      </div>
+    </div>
+    <ul class="knr-product-carousel__track" data-knr-track>
+      {%- for item in products -%}
+        <li class="knr-product-carousel__item">
+          {% render 'knr-product-tile', product: item, add_label: add_label %}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </knr-slider>
+{%- endif -%}

@@ -1,0 +1,32 @@
+{% doc %}
+  @param {string} title - Titre de l'accordéon
+  @param {string} [content] - Contenu richtext (HTML autorisé), utilisé si aucun menu
+  @param {linklist} [links] - Menu de liens, prioritaire sur content
+  @param {boolean} [open] - Ouvert par défaut
+{% enddoc %}
+
+<knr-accordion>
+  <details class="knr-accordion"{% if open %} open{% endif %}>
+    <summary class="knr-accordion__summary">
+      <span class="knr-accordion__title">{{ title }}</span>
+      <span class="knr-accordion__icon" aria-hidden="true">
+        {% render 'knr-icon', variant: 'arrow-right' %}
+      </span>
+    </summary>
+    <div class="knr-accordion__content">
+      <div class="knr-accordion__body">
+        {%- if links.links.size > 0 -%}
+          <ul class="knr-accordion__links">
+            {%- for link in links.links -%}
+              <li>
+                <a href="{{ link.url }}" class="knr-accordion__link"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- else -%}
+          {{ content }}
+        {%- endif -%}
+      </div>
+    </div>
+  </details>
+</knr-accordion>

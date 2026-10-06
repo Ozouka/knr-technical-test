@@ -1,0 +1,55 @@
+{{ 'knr-newsletter.css' | asset_url | stylesheet_tag }}
+
+<section class="knr-newsletter">
+  {%- if section.settings.image -%}
+    {{ section.settings.image | image_url: width: 900 | image_tag: class: 'knr-newsletter__image', widths: '300, 600, 900', sizes: '100vw', loading: 'lazy' }}
+  {%- endif -%}
+  <div class="knr-newsletter__container">
+    <p class="knr-newsletter__text">{{ section.settings.text }}</p>
+    <div class="knr-newsletter__info">
+      {%- form 'customer', id: 'knr-newsletter-form', class: 'knr-newsletter__form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input
+          class="knr-newsletter__input"
+          type="email"
+          name="contact[email]"
+          placeholder="Email"
+          autocomplete="email"
+          required
+        >
+        <button type="submit" class="knr-newsletter__button">S'inscrire</button>
+      {%- endform -%}
+      <p class="knr-newsletter__description">{{ section.settings.description }}</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "KNR Newsletter",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Texte",
+      "default": "Rejoignez la newsletter"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description sous le bouton",
+      "default": "En vous inscrivant, vous acceptez de recevoir nos actualités. Désinscription à tout moment."
+    }
+  ],
+  "presets": [
+    {
+      "name": "KNR Newsletter"
+    }
+  ]
+}
+{% endschema %}

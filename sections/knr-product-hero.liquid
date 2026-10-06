@@ -1,0 +1,252 @@
+{{ 'knr-product-hero.css' | asset_url | stylesheet_tag }}
+{{ 'knr-accordion.css' | asset_url | stylesheet_tag }}
+{{ 'knr-product-carousel.css' | asset_url | stylesheet_tag }}
+{{ 'knr-product-tile.css' | asset_url | stylesheet_tag }}
+{{ 'knr-editorial-banner.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'knr-slider.js' | asset_url }}" defer></script>
+<script src="{{ 'knr-accordion.js' | asset_url }}" defer></script>
+<script src="{{ 'knr-quick-add.js' | asset_url }}" defer></script>
+<script src="{{ 'knr-product-variants.js' | asset_url }}" defer></script>
+<script src="{{ 'knr-zoom.js' | asset_url }}" defer></script>
+
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign product_tags = product.metafields.custom.tags.value
+  assign pagination_id = 'knr-pagination-' | append: section.id
+  assign rating = product.metafields.custom.reviews_rating.value
+  assign rating_count = product.metafields.custom.reviews_count.value
+  assign scores = product.metafields.custom.scores.value
+  assign option = product.options_with_values.first
+  assign dots_id = 'knr-dots-' | append: section.id
+  assign description_html = product.metafields.custom.short_description | metafield_tag
+  assign benefits_html = product.metafields.custom.benefits | metafield_tag
+  assign ingredients_html = product.metafields.custom.key_ingredients | metafield_tag
+  assign skin_types_html = product.metafields.custom.skin_types | metafield_tag
+  assign ritual_products = product.metafields.custom.ritual_products.value
+  assign background_image = product.images.first
+-%}
+
+<section
+  class="knr-product-main"
+  data-section-id="{{ section.id }}"
+  {%- if background_image %} style="--knr-product-bg: url('{{ background_image | image_url: width: 750 | escape }}')" {% endif -%}
+>
+  <knr-slider class="knr-product-main__media" dots="{{ pagination_id }}">
+    <ul class="knr-slider__track knr-product-main__track" data-knr-track>
+      {%- for image in product.images -%}
+        {%- liquid
+          assign img_alt = image.alt | default: product.title
+          assign img_loading = 'lazy'
+          assign img_priority = 'auto'
+          assign img_sizes = '(min-width: 1024px) 33vw, 100vw'
+          if forloop.first
+            assign img_loading = 'eager'
+            assign img_priority = 'high'
+            assign img_sizes = '100vw'
+          endif
+        -%}
+        <li class="knr-slider__slide knr-product-main__slide">
+          {{ image | image_url: width: 1500 | image_tag: widths: '375, 750, 1100, 1500', sizes: img_sizes, alt: img_alt, loading: img_loading, fetchpriority: img_priority }}
+          {%- unless forloop.first -%}
+            <button type="button" class="knr-product-main__zoom" data-knr-zoom="{{ image | image_url: width: 2000 }}" aria-label="{{ section.settings.zoom_label }}"></button>
+          {%- endunless -%}
+          {%- if forloop.first and product_tags != blank -%}
+            <div class="knr-product-main__tags">
+              {%- for tag in product_tags -%}
+                <span class="knr-product-main__tag">{{ tag }}</span>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+    <button type="button" class="knr-product-main__arrow knr-product-main__arrow--prev knr-product-main__arrow--rotated" data-knr-prev aria-label="{{ section.settings.prev_label }}">
+      {% render 'knr-icon', variant: 'arrow-right' %}
+    </button>
+    <button type="button" class="knr-product-main__arrow knr-product-main__arrow--next" data-knr-next aria-label="{{ section.settings.next_label }}">
+      {% render 'knr-icon', variant: 'arrow-right' %}
+    </button>
+    <div class="knr-product-main__pagination" id="{{ pagination_id }}">
+      {%- for image in product.images -%}
+        {%- assign pagination_label = section.settings.dot_label | append: ' ' | append: forloop.index -%}
+        <button type="button" aria-label="{{ pagination_label }}"></button>
+      {%- endfor -%}
+    </div>
+  </knr-slider>
+
+  <div class="knr-product-main__info">
+    <p class="knr-product-main__breadcrumb">{{ product.type }}{% if product.collections.first %} / {{ product.collections.first.title }}{% endif %}</p>
+    <div class="knr-product-main__intro">
+      {%- if product_tags != blank -%}
+        <div class="knr-product-main__info-tags">
+          {%- for tag in product_tags -%}
+            <span class="knr-product-main__tag">{{ tag }}</span>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+      <div class="knr-product-main__heading">
+        <div class="knr-product-main__header">
+          <h1 class="knr-product-main__title">{{ product.title }}</h1>
+          <div class="knr-product-main__price">
+            <div class="knr-product-main__compare">
+              <span>{{ variant.price | money }}</span>
+              {%- if variant.compare_at_price > variant.price -%}
+                <s>{{ variant.compare_at_price | money }}</s>
+              {%- endif -%}
+            </div>
+            <div>
+              {%- if variant.unit_price_measurement -%}
+                <small>{{ variant.unit_price | money }} {{ section.settings.unit_price_label }} {{ variant.unit_price_measurement.reference_value }} {{ variant.unit_price_measurement.reference_unit }}</small>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+        {%- if rating != blank -%}
+          <p class="knr-product-main__rating">
+            <span class="knr-stars" style="--rating: {{ rating.rating }}" role="img" aria-label="{{ rating.rating }} / {{ rating.scale_max }}">★★★★★</span>
+            <span class="knr-product-main__rating-text">
+              <span class="knr-product-main__rating-value">{{ rating.rating }}</span>
+              <span class="knr-product-main__rating-sep"> · </span>
+              <span class="knr-product-main__rating-count">{{ rating_count }} {{ section.settings.reviews_label }}</span>
+            </span>
+          </p>
+        {%- endif -%}
+        {%- if scores != blank -%}
+          <p class="knr-product-main__scores">
+            {%- for score in scores -%}
+              <span class="knr-product-main__score">{{ score.label }} <span class="knr-product-span__scores">{{ score.value }}</span></span>{% unless forloop.last %}<span class="knr-product-main__score-sep"> · </span>{% endunless %}
+            {%- endfor -%}
+          </p>
+        {%- endif -%}
+        <p class="knr-product-main__summary">{{ product.description | strip_html | escape }}</p>
+      </div>
+    </div>
+
+    <div class="knr-product-main__purchase">
+      <knr-product-variants style="display: contents">
+        <script type="application/json">{{ product.variants | json }}</script>
+        <fieldset class="knr-product-main__options">
+          <legend>{{ option.name }}</legend>
+          <div class="knr-product-main__option-list">
+            {%- for value in option.values -%}
+              <label class="knr-product-main__option">
+                <input type="radio" name="{{ option.name | escape }}" value="{{ value | escape }}"{% if option.selected_value == value %} checked{% endif %}>
+                <span>{{ value }}</span>
+              </label>
+            {%- endfor -%}
+          </div>
+        </fieldset>
+      </knr-product-variants>
+      <div class="knr-product-main__price knr-product-main__price--desktop">
+        <div class="knr-product-main__compare">
+          <span>{{ variant.price | money }}</span>
+          {%- if variant.compare_at_price > variant.price -%}
+            <s>{{ variant.compare_at_price | money }}</s>
+          {%- endif -%}
+        </div>
+        {%- if variant.unit_price_measurement -%}
+          <small>{{ variant.unit_price | money }} {{ section.settings.unit_price_label }} {{ variant.unit_price_measurement.reference_value }} {{ variant.unit_price_measurement.reference_unit }}</small>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="knr-product-main__buy">
+      <knr-quick-add style="display: contents">
+        {%- form 'product', product, class: 'knr-product-main__form' -%}
+          <input type="hidden" name="id" value="{{ variant.id }}">
+          <button type="submit" class="knr-product-main__atc"{% unless variant.available %} disabled{% endunless %}>
+            {%- if variant.available -%}{{ section.settings.atc_label }}{%- else -%}{{ section.settings.sold_out_label }}{%- endif -%}
+          </button>
+        {%- endform -%}
+      </knr-quick-add>
+    </div>
+
+    <div class="knr-product-main__status">
+      <knr-slider
+        class="knr-product-main__stock"
+        dots="{{ dots_id }}"
+        autoplay="{{ section.settings.messages_autoplay }}"
+      >
+        <ul class="knr-product-main__messages-track" data-knr-track>
+          {%- for block in section.blocks -%}
+            <li class="knr-product-main__message" {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
+          {%- endfor -%}
+        </ul>
+      </knr-slider>
+
+      <div class="knr-product-main__dots" id="{{ dots_id }}">
+        {%- for block in section.blocks -%}
+          {%- assign dot_label = section.settings.dot_label | append: ' ' | append: forloop.index -%}
+          <button type="button" aria-label="{{ dot_label }}"></button>
+        {%- endfor -%}
+      </div>
+    </div>
+    <div class="knr-product-main__accordions">
+      {%- if description_html != blank -%}
+        {% render 'knr-accordion', title: section.settings.description_title, content: description_html, open: true %}
+      {%- endif -%}
+      {%- if benefits_html != blank -%}
+        {% render 'knr-accordion', title: section.settings.benefits_title, content: benefits_html %}
+      {%- endif -%}
+      {%- if ingredients_html != blank -%}
+        {% render 'knr-accordion', title: section.settings.ingredients_title, content: ingredients_html %}
+      {%- endif -%}
+      {%- if skin_types_html != blank -%}
+        {% render 'knr-accordion', title: section.settings.skin_types_title, content: skin_types_html %}
+      {%- endif -%}
+    </div>
+    {% render 'knr-product-carousel',
+      title: section.settings.ritual_title,
+      products: ritual_products,
+      prev_label: section.settings.carousel_prev_label,
+      next_label: section.settings.carousel_next_label,
+      add_label: section.settings.carousel_add_label
+    %}
+  </div>
+  <knr-zoom>
+    <dialog class="knr-zoom__dialog" aria-label="{{ section.settings.zoom_label }}">
+      <img class="knr-zoom__image" alt="Image zoomed" width="1200" height="1200">
+    </dialog>
+  </knr-zoom>
+</section>
+
+{% schema %}
+{
+  "name": "KNR Product Hero",
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "text", "label": "Texte" }
+      ]
+    }
+  ],
+  "settings": [
+    { "type": "text", "id": "prev_label", "label": "Aria-label précédent", "default": "Image précédente" },
+    { "type": "text", "id": "next_label", "label": "Aria-label suivant", "default": "Image suivante" },
+    { "type": "text", "id": "dot_label", "label": "Aria-label pagination", "default": "Image" },
+    { "type": "text", "id": "unit_price_label", "label": "Texte prix unitaire", "default": "par" },
+    { "type": "text", "id": "reviews_label", "label": "Texte avis", "default": "avis" },
+    { "type": "text", "id": "atc_label", "label": "Bouton panier", "default": "Ajouter au panier" },
+    { "type": "text", "id": "sold_out_label", "label": "Texte rupture", "default": "Épuisé" },
+    { "type": "text", "id": "in_stock_label", "label": "Texte stock", "default": "En stock, livraison estimée" },
+    { "type": "range", "id": "messages_autoplay", "label": "Défilement auto des messages (0 = off)", "min": 0, "max": 10, "step": 1, "unit": "s", "default": 4 },
+    { "type": "text", "id": "description_title", "label": "Titre accordéon description", "default": "Description" },
+    { "type": "text", "id": "benefits_title", "label": "Titre accordéon bienfaits", "default": "Bienfaits" },
+    { "type": "text", "id": "ingredients_title", "label": "Titre accordéon ingrédients", "default": "Ingrédients clés" },
+    { "type": "text", "id": "skin_types_title", "label": "Titre accordéon types de peau", "default": "Adapté aux" },
+    { "type": "text", "id": "ritual_title", "label": "Titre carrousel rituel", "default": "Complétez votre rituel" },
+    { "type": "text", "id": "carousel_prev_label", "label": "Aria-label carrousel précédent", "default": "Produits précédents" },
+    { "type": "text", "id": "carousel_next_label", "label": "Aria-label carrousel suivant", "default": "Produits suivants" },
+    { "type": "text", "id": "carousel_add_label", "label": "Aria-label ajout rapide", "default": "Ajouter au panier" },
+    { "type": "text", "id": "zoom_label", "label": "Aria-label zoom", "default": "Agrandir l'image" }
+  ],
+  "presets": [
+    {
+      "name": "KNR Product Hero"
+    }
+  ]
+}
+{% endschema %}

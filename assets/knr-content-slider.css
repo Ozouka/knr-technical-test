@@ -1,0 +1,100 @@
+.content-slider-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-top: 40px;
+  padding-bottom: 64px;
+  padding-left: 24px;
+}
+
+.content-slider-container * {
+  margin: 0;
+}
+
+.content-slider-container__title {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.04em;
+}
+
+.content-slider-container__carousel {
+  display: block;
+}
+
+.content-slider-container__track {
+  display: flex;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.content-slider-container__track::-webkit-scrollbar {
+  display: none;
+}
+
+.content-slider-container__item {
+  flex: 0 0 75%;
+  scroll-snap-align: start;
+}
+
+.content-slider-container__pagination {
+  display: flex;
+  justify-content: center;
+  padding-right: 24px;
+}
+
+.content-slider-container__pagination button {
+  width: 20px;
+  height: 0.8px;
+  padding: 0;
+  border: 0;
+  background: #f9f8f5;
+}
+
+.content-slider-container__pagination button[aria-current='true'] {
+  height: 1px;
+  background: #000;
+}
+
+.content-slider-container__link {
+  align-self: center;
+  border-bottom: 0.8px solid #000;
+  color: #000;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+@media (min-width: 1024px) {
+  .content-slider-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 40px 16px;
+    padding: 40px 40px 120px;
+  }
+  .content-slider-container--articles { padding: 0 40px; }
+
+  .content-slider-container__title { flex: 1; }
+  .content-slider-container__link {
+    order: 1;
+    align-self: flex-end;
+    padding-bottom: 2px;
+  }
+  .content-slider-container__carousel { order: 2; flex: 0 0 100%; }
+  .content-slider-container__pagination { display: none; }
+
+  .content-slider-container__track {
+    flex-wrap: wrap;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+  .content-slider-container__item { flex: 1 0 calc(33.333% - 5.4px); }
+  .content-slider-container--articles .content-slider-container__item { flex-basis: calc(25% - 6.1px); }
+}
